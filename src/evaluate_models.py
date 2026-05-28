@@ -1,9 +1,11 @@
+
 # evaluate_models.py
 
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+from sklearn.model_selection import cross_val_score
 from sklearn.metrics import (
     accuracy_score,
     precision_score,
@@ -39,7 +41,7 @@ def create_comparison_table(y_test, model_predictions):
 
 
 def plot_confusion_matrices(y_test, model_predictions):
-    fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+    fig, axes = plt.subplots(3, 2, figsize=(14, 14))
 
     for ax, (model_name, predictions) in zip(axes.flatten(), model_predictions.items()):
 
@@ -56,6 +58,10 @@ def plot_confusion_matrices(y_test, model_predictions):
         ax.set_title(model_name)
         ax.set_xlabel("Predicted Label")
         ax.set_ylabel("True Label")
+
+    # Remove unused subplot if there are only 5 models
+    if len(model_predictions) < len(axes.flatten()):
+        fig.delaxes(axes.flatten()[len(model_predictions)])
 
     plt.tight_layout()
     plt.show()
@@ -101,3 +107,30 @@ def create_auc_table(auc_scores):
     })
 
     return auc_results
+
+
+
+
+def perform_cross_validation(models, X_train_scaled, y_train):
+    cv_results = []
+
+    for model_name, model in models.items():
+
+        scores = cross_val_score(
+            model,
+            X_train_scaled,
+            y_train,
+            cv=5,
+            scoring='accuracy'
+        )
+
+        cv_results.append({
+            "Model": model_name,
+            "Mean CV Accuracy": round(scores.mean() * 100, 2),
+            "Standard Deviation": round(scores.std() * 100, 2)
+        })
+
+    cv_results_df = pd.DataFrame(cv_results)
+
+    return cv_results_df
+
