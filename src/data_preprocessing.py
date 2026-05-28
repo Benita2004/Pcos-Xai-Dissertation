@@ -88,8 +88,10 @@ def preprocess_data(df):
         X_test[column] = pd.to_numeric(X_test[column], errors="coerce")
 
     # Fill any remaining missing values after conversion
-    X_train = X_train.fillna(X_train.median())
-    X_test = X_test.fillna(X_test.median())
+    train_medians = X_train.median()
+
+    X_train = X_train.fillna(train_medians)
+    X_test = X_test.fillna(train_medians)
 
     # Scale features
     scaler = StandardScaler()
