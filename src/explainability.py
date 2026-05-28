@@ -2,6 +2,8 @@
 
 # Import libraries
 import shap
+import pandas as pd
+import matplotlib.pyplot as plt
 
 # Import LIME explainer
 from lime.lime_tabular import LimeTabularExplainer
@@ -114,3 +116,36 @@ def generate_lime_explanation(
     print("LIME explanation generated successfully.")
 
     return lime_exp
+
+# Plot LIME Bar Chart
+def plot_lime_bar_chart(lime_exp):
+    """
+    Display LIME explanation as a horizontal bar chart.
+    """
+
+    # Convert LIME explanation into a DataFrame
+    lime_df = pd.DataFrame(
+        lime_exp.as_list(),
+        columns=["Feature", "Contribution"]
+    )
+
+    # Sort values for cleaner visualisation
+    lime_df = lime_df.sort_values(
+        by="Contribution",
+        ascending=True
+    )
+
+    # Create horizontal bar chart
+    plt.figure(figsize=(10, 6))
+
+    plt.barh(
+        lime_df["Feature"],
+        lime_df["Contribution"]
+    )
+
+    plt.xlabel("Feature Contribution")
+    plt.ylabel("Feature")
+    plt.title("LIME Explanation for Individual PCOS Prediction")
+
+    plt.tight_layout()
+    plt.show()
