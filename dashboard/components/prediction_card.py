@@ -1,20 +1,36 @@
 import streamlit as st
 
 
-def render_prediction_card(prediction_label="Waiting for input", probability=None):
+def render_prediction_card(
+        prediction_label="Waiting for input",
+        probability=None):
 
-    st.markdown("###  Prediction Result")
+    st.markdown("### Prediction Result")
 
-    if probability is None:
-        st.info("Enter patient details and click **Predict PCOS** to see the result.")
-        return
+    col1, col2 = st.columns([2, 1])
 
-    if prediction_label == "PCOS Detected":
-        st.error(f"### {prediction_label}")
-    else:
-        st.success(f"### {prediction_label}")
+    with col1:
 
-    st.metric(
-        label="Prediction Probability",
-        value=f"{probability:.0f}%"
-    )
+        if probability is None:
+            st.info(
+                "Enter patient details and click Predict PCOS "
+                "to see the result."
+            )
+
+        else:
+
+            if prediction_label == "PCOS Detected":
+                st.error(prediction_label)
+            else:
+                st.success(prediction_label)
+
+            st.metric(
+                "Prediction Probability",
+                f"{probability:.0f}%"
+            )
+
+    with col2:
+        st.image(
+            "dashboard/assets/images/uterus.png", width=90,
+            width=180
+        )

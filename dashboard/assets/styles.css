@@ -1,0 +1,78 @@
+/* Main App Background */
+.main {
+    background-color: #FFF8FB;
+}
+
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background-color: #FCEEF5;
+    border-right: 1px solid #F5D6E6;
+}
+
+/* Main Titles */
+h1 {
+    color: #D63384;
+    font-weight: 700;
+}
+
+h2, h3 {
+    color: #C2185B;
+}
+
+/* Info Boxes */
+[data-testid="stAlert"] {
+    border-radius: 12px;
+}
+
+/* Buttons */
+.stButton > button {
+    background-color: #EC4899;
+    color: white;
+    border-radius: 12px;
+    border: none;
+    padding: 0.6rem 1rem;
+    font-weight: 600;
+    width: 100%;
+}
+
+.stButton > button:hover {
+    background-color: #DB2777;
+    color: white;
+}
+
+/* Inputs */
+.stNumberInput,
+.stSelectbox {
+    border-radius: 10px;
+}
+
+/* Cards */
+.pink-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid #F8D7E5;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+
+/* Prediction Card */
+.prediction-card {
+    background-color: #FFF0F6;
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid #F8BBD0;
+}
+
+/* Model Card */
+.model-card {
+    background-color: #FFF8FB;
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid #F5D6E6;
+}
+
+/* Remove Streamlit top padding */
+.block-container {
+    padding-top: 2rem;
+}
