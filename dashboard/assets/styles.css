@@ -76,3 +76,127 @@ h2, h3 {
 .block-container {
     padding-top: 2rem;
 }
+
+/* Main Dashboard Header */
+.main-header {
+    background: linear-gradient(135deg, #FFF0F6, #FFFFFF);
+    border: 1px solid #F8BBD0;
+    border-radius: 18px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 4px 14px rgba(214, 51, 132, 0.10);
+}
+
+.main-header h1 {
+    color: #D63384;
+    font-size: 34px;
+    font-weight: 800;
+    margin: 0 0 8px 0;
+    letter-spacing: 0.5px;
+}
+
+.main-header p {
+    color: #4A4A4A;
+    font-size: 15px;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.header-icon {
+    font-size: 42px;
+    line-height: 1;
+}
+
+/* Probability Card */
+.dashboard-card,
+.probability-card {
+    background-color: #FFFFFF;
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid #F8BBD0;
+    box-shadow: 0 4px 14px rgba(214, 51, 132, 0.08);
+    margin-bottom: 20px;
+}
+
+.probability-card h3 {
+    color: #C2185B;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.probability-circle {
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    border: 10px solid #EC4899;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto 15px auto;
+}
+
+.probability-circle span {
+    color: #D63384;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.probability-card p {
+    text-align: center;
+    color: #C2185B;
+    font-weight: 600;
+}
+
+/* SHAP Section */
+.shap-section {
+    background-color: #FFFFFF;
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid #F8BBD0;
+    box-shadow: 0 4px 14px rgba(214, 51, 132, 0.08);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.shap-section h3 {
+    color: #C2185B;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.shap-section p {
+    color: #4A4A4A;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* Medical Disclaimer */
+.disclaimer-card {
+    background-color: #FFF0F6;
+    border: 1px solid #F8BBD0;
+    border-left: 6px solid #EC4899;
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-top: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 14px rgba(214, 51, 132, 0.08);
+}
+
+.disclaimer-card h4 {
+    color: #C2185B;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.disclaimer-card p {
+    color: #4A4A4A;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}

@@ -5,25 +5,22 @@ import streamlit as st
 
 def render_header():
     """
-    Render the HerVita AI dashboard header.
+    Render the dashboard header section.
     """
 
-    st.title("HerVita AI")
-
-    st.subheader(
-        "PCOS Prediction & Explainable AI Dashboard"
-    )
-
-    st.write(
+    st.markdown(
         """
-        This dashboard was developed as part of a final-year Computer Science
-        dissertation exploring the use of Explainable Artificial Intelligence
-        for Polycystic Ovary Syndrome (PCOS) prediction.
-        """
-    )
-
-    st.info(
-        "Users can enter patient information, receive a PCOS prediction, "
-        "view model confidence, and understand the prediction through SHAP explanations."
+        <div class="main-header">
+            <div class="header-icon">🦋</div>
+            <div>
+                <h1>PCOS Prediction and Explainable AI Dashboard</h1>
+                <p>
+                    This system predicts the likelihood of Polycystic Ovary Syndrome (PCOS)
+                    using a Random Forest machine learning model with SHAP explainability.
+                </p>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
     )
     
