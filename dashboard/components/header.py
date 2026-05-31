@@ -11,7 +11,7 @@ def render_header():
 
     # Get the path to the image safely
     BASE_DIR = Path(__file__).resolve().parent.parent
-    logo_path = BASE_DIR / "assets" / "images" / "Benita.png"
+    logo_path = BASE_DIR / "assets" / "images" / "Butterfly.png"
 
     # If the image exists, show it. If not, use the butterfly emoji.
     if logo_path.exists():
