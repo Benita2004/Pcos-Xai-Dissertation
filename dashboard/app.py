@@ -17,7 +17,7 @@ from utils.predictor import make_prediction
 
 # Page configuration
 st.set_page_config(
-    page_title="HerVita AI",
+    page_title="PCOS XAI Dashboard",
     page_icon="🌸",
     layout="wide"
 )
@@ -35,6 +35,20 @@ if css_path.exists():
 model, scaler = load_model_and_scaler()
 
 
+# Store prediction result so it does not disappear after Streamlit reruns
+if "prediction_label" not in st.session_state:
+    st.session_state.prediction_label = None
+
+if "probability_percent" not in st.session_state:
+    st.session_state.probability_percent = None
+
+if "input_df" not in st.session_state:
+    st.session_state.input_df = None
+
+if "scaled_input" not in st.session_state:
+    st.session_state.scaled_input = None
+
+
 # Header
 render_header()
 
@@ -43,27 +57,37 @@ render_header()
 user_inputs, predict_button = render_sidebar()
 
 
-# Default values before prediction
-prediction_label = None
-probability_percent = None
-
-
 # Make prediction only when button is clicked
 if predict_button:
-    input_df = prepare_input(user_inputs)
+    try:
+        input_df = prepare_input(user_inputs)
 
-    prediction, probability, scaled_input = make_prediction(
-        model,
-        scaler,
-        input_df
-    )
+        prediction, probability, scaled_input = make_prediction(
+            model,
+            scaler,
+            input_df
+        )
 
-    if prediction == 1:
-        prediction_label = "PCOS Detected"
-    else:
-        prediction_label = "No PCOS Detected"
+        if prediction == 1:
+            st.session_state.prediction_label = "PCOS Detected"
+        else:
+            st.session_state.prediction_label = "No PCOS Detected"
 
-    probability_percent = round(probability * 100, 2)
+        st.session_state.probability_percent = round(probability * 100, 2)
+
+        # Store inputs for SHAP explanations
+        st.session_state.input_df = input_df
+        st.session_state.scaled_input = scaled_input
+
+    except ValueError as error:
+        # Clear previous result when invalid input is entered
+        st.session_state.prediction_label = None
+        st.session_state.probability_percent = None
+        st.session_state.input_df = None
+        st.session_state.scaled_input = None
+
+        # Show validation message beside the inputs, not across the main dashboard
+        st.sidebar.error(str(error))
 
 
 # Prediction and probability cards
@@ -71,18 +95,22 @@ col1, col2 = st.columns(2)
 
 with col1:
     render_prediction_card(
-        prediction_label=prediction_label,
-        probability=probability_percent
+        prediction_label=st.session_state.prediction_label,
+        probability=st.session_state.probability_percent
     )
 
 with col2:
     render_probability_card(
-        probability=probability_percent
+        probability=st.session_state.probability_percent
     )
 
 
-# SHAP placeholder section
-render_shap_section()
+# SHAP explanation section
+render_shap_section(
+    model=model,
+    input_df=st.session_state.input_df,
+    scaled_input=st.session_state.scaled_input
+)
 
 
 # Model information section
@@ -90,15 +118,14 @@ render_model_info_card()
 
 
 # Medical disclaimer
-# Medical disclaimer
 st.markdown(
     """
     <div class="disclaimer-card">
         <h4>Medical Disclaimer</h4>
         <p>
-            HerVita AI is an academic prototype developed for a final-year dissertation project.
-            It is not a medical diagnostic tool and should not replace advice from a qualified
-            healthcare professional.
+            This system is designed for educational and research purposes only and should not
+            replace professional medical diagnosis, advice, or treatment. Always consult a
+            qualified healthcare professional for medical concerns.
         </p>
     </div>
     """,

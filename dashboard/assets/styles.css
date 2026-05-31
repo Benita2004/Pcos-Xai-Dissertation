@@ -1,93 +1,167 @@
-/* Main App Background */
-.main {
-    background-color: #FFF8FB;
+/* =========================
+   Overall App Styling
+========================= */
+
+.stApp {
+    background: linear-gradient(135deg, #FFF8FB 0%, #FFFFFF 60%, #FFF0F6 100%);
+    color: #2F2F3A;
 }
 
-/* Sidebar */
+.block-container {
+    padding-top: 2rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    max-width: 1400px;
+}
+
+
+/* =========================
+   Sidebar
+========================= */
+
 [data-testid="stSidebar"] {
-    background-color: #FCEEF5;
+    background-color: #FCEEF5 !important;
     border-right: 1px solid #F5D6E6;
 }
 
-/* Main Titles */
-h1 {
-    color: #D63384;
-    font-weight: 700;
+[data-testid="stSidebar"] > div {
+    background-color: #FCEEF5 !important;
 }
 
-h2, h3 {
+[data-testid="stSidebarContent"] {
+    background-color: #FCEEF5 !important;
+    padding: 1.5rem 1rem;
+}
+
+.sidebar-title {
+    margin-bottom: 22px;
+}
+
+.sidebar-title h2 {
     color: #C2185B;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 8px;
 }
 
-/* Info Boxes */
-[data-testid="stAlert"] {
-    border-radius: 12px;
+.sidebar-title p {
+    color: #5A3A48;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
-/* Buttons */
-.stButton > button {
-    background-color: #EC4899;
-    color: white;
-    border-radius: 12px;
-    border: none;
-    padding: 0.6rem 1rem;
+[data-testid="stSidebar"] label {
+    color: #2F2F3A;
     font-weight: 600;
-    width: 100%;
+    font-size: 14px;
 }
 
-.stButton > button:hover {
-    background-color: #DB2777;
+[data-testid="stSidebar"] .stTextInput {
+    margin-bottom: 0.8rem;
+}
+
+[data-testid="stSidebar"] .stTextInput input {
+    background-color: #FFFFFF !important;
+    border: 1px solid #F5D6E6 !important;
+    border-radius: 12px !important;
+    color: #2F2F3A !important;
+    padding: 0.65rem 0.8rem !important;
+    box-shadow: none !important;
+}
+
+[data-testid="stSidebar"] .stTextInput input:focus {
+    border: 1px solid #EC4899 !important;
+    box-shadow: 0 0 0 1px rgba(236, 72, 153, 0.15) !important;
+}
+
+[data-testid="stSidebar"] .stSelectbox {
+    margin-bottom: 0.8rem;
+}
+
+[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] {
+    background-color: transparent !important;
+}
+
+[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] > div {
+    background-color: #FFFFFF !important;
+    border: 1px solid #F5D6E6 !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+}
+
+[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] div {
+    box-shadow: none !important;
+}
+
+[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] > div:focus-within {
+    border: 1px solid #EC4899 !important;
+    box-shadow: 0 0 0 1px rgba(236, 72, 153, 0.15) !important;
+}
+
+[data-testid="stSidebar"] .stButton > button {
+    background: linear-gradient(135deg, #EC4899, #D63384);
+    color: white;
+    border-radius: 14px;
+    border: none;
+    padding: 0.75rem 1rem;
+    font-weight: 700;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(214, 51, 132, 0.25);
+}
+
+[data-testid="stSidebar"] .stButton > button:hover {
+    background: linear-gradient(135deg, #DB2777, #BE185D);
     color: white;
 }
 
-/* Inputs */
-.stNumberInput,
-.stSelectbox {
-    border-radius: 10px;
+[data-testid="stSidebar"] .stButton > button:disabled {
+    background: #F8BBD0 !important;
+    color: #ffffff !important;
+    cursor: not-allowed;
+    box-shadow: none;
 }
 
-/* Cards */
-.pink-card {
-    background-color: white;
-    padding: 20px;
-    border-radius: 16px;
-    border: 1px solid #F8D7E5;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    margin-bottom: 20px;
-}
-
-/* Prediction Card */
-.prediction-card {
-    background-color: #FFF0F6;
-    padding: 20px;
-    border-radius: 16px;
-    border: 1px solid #F8BBD0;
-}
-
-/* Model Card */
-.model-card {
+.sidebar-note {
     background-color: #FFF8FB;
-    padding: 20px;
-    border-radius: 16px;
-    border: 1px solid #F5D6E6;
+    border: 1px solid #F8BBD0;
+    border-radius: 14px;
+    padding: 14px;
+    margin-top: 18px;
 }
 
-/* Remove Streamlit top padding */
-.block-container {
-    padding-top: 2rem;
+.sidebar-note p {
+    color: #6B3A4E;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
 }
 
-/* Main Dashboard Header */
+.inline-validation-error {
+    background-color: #FFF3CD;
+    color: #7A4B00;
+    border-radius: 10px;
+    padding: 8px 10px;
+    margin-top: -8px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+
+/* =========================
+   Header
+========================= */
+
 .main-header {
     background: linear-gradient(135deg, #FFF0F6, #FFFFFF);
     border: 1px solid #F8BBD0;
-    border-radius: 18px;
+    border-radius: 20px;
     padding: 28px 32px;
-    margin-bottom: 24px;
+    margin-bottom: 26px;
     display: flex;
     align-items: center;
     gap: 18px;
-    box-shadow: 0 4px 14px rgba(214, 51, 132, 0.10);
+    box-shadow: 0 4px 18px rgba(214, 51, 132, 0.10);
 }
 
 .main-header h1 {
@@ -95,7 +169,7 @@ h2, h3 {
     font-size: 34px;
     font-weight: 800;
     margin: 0 0 8px 0;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
 }
 
 .main-header p {
@@ -110,81 +184,218 @@ h2, h3 {
     line-height: 1;
 }
 
-/* Probability Card */
-.dashboard-card,
-.probability-card {
-    background-color: #FFFFFF;
-    padding: 24px;
-    border-radius: 16px;
-    border: 1px solid #F8BBD0;
-    box-shadow: 0 4px 14px rgba(214, 51, 132, 0.08);
-    margin-bottom: 20px;
+
+/* =========================
+   General Headings
+========================= */
+
+h1, h2, h3, h4 {
+    color: #2F2F3A;
 }
 
+
+/* =========================
+   Prediction and Probability Cards
+========================= */
+
+.prediction-card,
+.probability-card {
+    background-color: #FFFFFF;
+    padding: 22px 24px;
+    border-radius: 18px;
+    border: 1px solid #F8BBD0;
+    box-shadow: 0 4px 16px rgba(214, 51, 132, 0.08);
+    height: 250px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.prediction-card h3,
 .probability-card h3 {
     color: #C2185B;
     font-size: 20px;
     font-weight: 700;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
 }
 
-.probability-circle {
-    width: 105px;
-    height: 105px;
+/* Prediction result content */
+.prediction-placeholder {
+    color: #4A4A4A;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-top: 12px;
+}
+
+.prediction-positive,
+.prediction-negative {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.prediction-positive h2 {
+    color: #D63384;
+    font-size: 27px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.prediction-negative h2 {
+    color: #2E7D32;
+    font-size: 27px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.prediction-positive p,
+.prediction-negative p {
+    color: #4A4A4A;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* Probability content */
+.probability-ring {
+    width: 92px;
+    height: 92px;
     border-radius: 50%;
-    border: 10px solid #EC4899;
+    border: 9px solid #EC4899;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 10px auto 15px auto;
+    margin: 2px auto 12px auto;
 }
 
-.probability-circle span {
+.probability-value {
     color: #D63384;
-    font-size: 24px;
+    font-size: 21px;
     font-weight: 800;
+    text-align: center;
 }
 
-.probability-card p {
+.probability-status {
     text-align: center;
     color: #C2185B;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 4px;
+    margin-bottom: 8px;
 }
 
-/* SHAP Section */
+.probability-description {
+    color: #4A4A4A;
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: center;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+/* =========================
+   SHAP Section
+========================= */
+
 .shap-section {
     background-color: #FFFFFF;
     padding: 24px;
-    border-radius: 16px;
+    border-radius: 18px;
     border: 1px solid #F8BBD0;
-    box-shadow: 0 4px 14px rgba(214, 51, 132, 0.08);
+    box-shadow: 0 4px 16px rgba(214, 51, 132, 0.08);
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
+    height: 175px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .shap-section h3 {
     color: #C2185B;
     font-size: 20px;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
 }
 
 .shap-section p {
     color: #4A4A4A;
     font-size: 15px;
     line-height: 1.5;
+    margin: 0;
 }
 
-/* Medical Disclaimer */
+/* Keep both SHAP heading cards equal inside each column */
+[data-testid="column"] .shap-section {
+    height: 175px;
+}
+
+/* Same-sized SHAP plot cards */
+[data-testid="stPyplot"] {
+    background-color: #FFFFFF;
+    border: 1px solid #F8BBD0;
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: 0 4px 16px rgba(214, 51, 132, 0.08);
+    margin-top: 0;
+    margin-bottom: 24px;
+    height: 455px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Make plotted images sit neatly inside the card */
+[data-testid="stPyplot"] img {
+    border-radius: 12px;
+    width: 100%;
+    max-height: 420px;
+    object-fit: contain;
+}
+
+
+/* =========================
+   Model Information Card
+========================= */
+
+.model-card {
+    background-color: #FFFFFF;
+    padding: 24px;
+    border-radius: 18px;
+    border: 1px solid #F8BBD0;
+    box-shadow: 0 4px 16px rgba(214, 51, 132, 0.08);
+    margin-bottom: 20px;
+}
+
+.model-card h3 {
+    color: #C2185B;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.model-card p {
+    color: #4A4A4A;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   Medical Disclaimer
+========================= */
+
 .disclaimer-card {
     background-color: #FFF0F6;
     border: 1px solid #F8BBD0;
     border-left: 6px solid #EC4899;
-    border-radius: 16px;
+    border-radius: 18px;
     padding: 20px 24px;
     margin-top: 24px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 14px rgba(214, 51, 132, 0.08);
+    box-shadow: 0 4px 16px rgba(214, 51, 132, 0.08);
 }
 
 .disclaimer-card h4 {
@@ -199,4 +410,13 @@ h2, h3 {
     font-size: 14px;
     line-height: 1.6;
     margin: 0;
+}
+
+
+/* =========================
+   Streamlit Alerts
+========================= */
+
+[data-testid="stAlert"] {
+    border-radius: 12px;
 }
