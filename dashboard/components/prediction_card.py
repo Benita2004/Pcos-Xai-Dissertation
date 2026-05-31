@@ -1,36 +1,50 @@
+# dashboard/components/prediction_card.py
+
 import streamlit as st
 
 
-def render_prediction_card(
-        prediction_label="Waiting for input",
-        probability=None):
+def render_prediction_card(prediction_label=None, probability=None):
+    """
+    Display the PCOS prediction result card.
+    """
 
-    st.markdown("### Prediction Result")
+    st.markdown(
+        """
+        <div class="prediction-card">
+            <h3>Prediction Result</h3>
+        """,
+        unsafe_allow_html=True
+    )
 
-    col1, col2 = st.columns([2, 1])
-
-    with col1:
-
-        if probability is None:
-            st.info(
-                "Enter patient details and click Predict PCOS "
-                "to see the result."
-            )
-
-        else:
-
-            if prediction_label == "PCOS Detected":
-                st.error(prediction_label)
-            else:
-                st.success(prediction_label)
-
-            st.metric(
-                "Prediction Probability",
-                f"{probability:.0f}%"
-            )
-
-    with col2:
-        st.image(
-            "dashboard/assets/images/uterus.png", width=90,
-            width=180
+    if prediction_label is None:
+        st.markdown(
+            """
+            <p class="prediction-placeholder">
+                Enter patient details in the sidebar and click Predict PCOS to view the result.
+            </p>
+            """,
+            unsafe_allow_html=True
         )
+
+    else:
+        if prediction_label == "PCOS Detected":
+            result_class = "prediction-positive"
+        else:
+            result_class = "prediction-negative"
+
+        st.markdown(
+            f"""
+            <div class="{result_class}">
+                <h2>{prediction_label}</h2>
+                <p>Prediction confidence: <strong>{probability}%</strong></p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    st.markdown(
+        """
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
