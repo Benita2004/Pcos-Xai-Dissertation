@@ -85,7 +85,7 @@ def get_user_facing_shap_values(shap_values, input_df):
 
 def plot_top_contributing_features(display_names, display_values, top_n=8):
     """
-    Create a top contributing features bar plot using only dashboard-visible inputs.
+    Create a polished top contributing features bar plot using only dashboard-visible inputs.
     """
 
     top_indices = np.argsort(np.abs(display_values))[::-1][:top_n]
@@ -95,26 +95,78 @@ def plot_top_contributing_features(display_names, display_values, top_n=8):
 
     fig, ax = plt.subplots(figsize=(7.5, 4.8))
 
+    fig.patch.set_facecolor("#FFFFFF")
+    ax.set_facecolor("#FFFFFF")
+
     y_positions = np.arange(len(top_features))
 
-    ax.barh(y_positions, top_values, color="#EC4899")
+    bar_colours = [
+        "#EC4899" if value >= 0 else "#F9A8D4"
+        for value in top_values
+    ]
+
+    ax.barh(
+        y_positions,
+        top_values,
+        color=bar_colours,
+        edgecolor="#C2185B",
+        linewidth=0.6
+    )
+
     ax.set_yticks(y_positions)
-    ax.set_yticklabels(top_features, fontsize=9)
+    ax.set_yticklabels(top_features, fontsize=10, color="#2F2F3A")
     ax.invert_yaxis()
 
-    ax.set_xlabel("SHAP value impact on PCOS prediction", fontsize=9)
-    ax.set_title("Top Contributing Dashboard Features", fontsize=11, fontweight="bold")
+    ax.set_xlabel(
+        "SHAP value impact on PCOS prediction",
+        fontsize=10,
+        color="#4A4A4A"
+    )
 
-    ax.axvline(0, color="#444444", linewidth=0.8)
+    ax.set_title(
+        "Top Contributing Dashboard Features",
+        fontsize=12,
+        fontweight="bold",
+        color="#2F2F3A",
+        pad=12
+    )
 
+    ax.axvline(0, color="#4A4A4A", linewidth=0.9)
+
+    # Soft graph grid lines
+    ax.grid(
+        axis="x",
+        linestyle="--",
+        linewidth=0.7,
+        alpha=0.35,
+        color="#C9C9C9"
+    )
+
+    ax.set_axisbelow(True)
+
+    # Soft border around the graph
+    for spine in ax.spines.values():
+        spine.set_visible(True)
+        spine.set_edgecolor("#F8BBD0")
+        spine.set_linewidth(1.2)
+
+    # Value labels
     for i, value in enumerate(top_values):
+        label_position = value + 0.005 if value >= 0 else value - 0.005
+        alignment = "left" if value >= 0 else "right"
+
         ax.text(
-            value,
+            label_position,
             i,
-            f" {value:+.2f}",
+            f"{value:+.2f}",
             va="center",
-            fontsize=8
+            ha=alignment,
+            fontsize=9,
+            color="#4A4A4A"
         )
+
+    ax.tick_params(axis="x", colors="#4A4A4A", labelsize=9)
+    ax.tick_params(axis="y", colors="#2F2F3A", labelsize=10)
 
     plt.tight_layout()
 
@@ -123,7 +175,7 @@ def plot_top_contributing_features(display_names, display_values, top_n=8):
 
 def plot_waterfall(display_names, display_values, display_data, expected_value, shap_values, used_indices):
     """
-    Create a SHAP waterfall plot using only dashboard-visible inputs.
+    Create a polished SHAP waterfall plot using only dashboard-visible inputs.
 
     Hidden/defaulted model features are absorbed into the adjusted base value,
     so the simplified waterfall still explains the visible dashboard inputs clearly.
@@ -144,6 +196,7 @@ def plot_waterfall(display_names, display_values, display_data, expected_value, 
     )
 
     fig = plt.figure(figsize=(7.5, 4.8))
+    fig.patch.set_facecolor("#FFFFFF")
 
     shap.plots.waterfall(
         explanation,
@@ -152,11 +205,12 @@ def plot_waterfall(display_names, display_values, display_data, expected_value, 
     )
 
     ax = plt.gca()
+    ax.set_facecolor("#FFFFFF")
 
-    # Pink styling
     positive_pink = "#EC4899"
     negative_pink = "#F9A8D4"
     text_dark = "#4A4A4A"
+    heading_dark = "#2F2F3A"
     accent = "#C2185B"
 
     # Recolour waterfall bars/arrows
@@ -178,15 +232,25 @@ def plot_waterfall(display_names, display_values, display_data, expected_value, 
         text.set_color(accent)
         text.set_fontsize(10)
 
-    # Axis styling
-    ax.set_facecolor("#FFFFFF")
+    # Soft graph grid lines
+    ax.grid(
+        axis="x",
+        linestyle="--",
+        linewidth=0.7,
+        alpha=0.35,
+        color="#C9C9C9"
+    )
+
+    ax.set_axisbelow(True)
+
+    # Soft border around the graph
+    for spine in ax.spines.values():
+        spine.set_visible(True)
+        spine.set_edgecolor("#F8BBD0")
+        spine.set_linewidth(1.2)
+
     ax.tick_params(axis="x", colors=text_dark, labelsize=10)
-    ax.tick_params(axis="y", colors=text_dark, labelsize=10)
-
-    for spine in ["top", "right", "left"]:
-        ax.spines[spine].set_visible(False)
-
-    ax.spines["bottom"].set_color("#D1D5DB")
+    ax.tick_params(axis="y", colors=heading_dark, labelsize=10)
 
     plt.tight_layout()
 
