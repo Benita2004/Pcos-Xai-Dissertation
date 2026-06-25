@@ -1,5 +1,3 @@
-# test_preprocessing.py
-
 import sys
 import os
 import pandas as pd
@@ -17,7 +15,6 @@ from src.data_preprocessing import preprocess_data
 # Load cleaned dataset
 df = pd.read_csv("data/processed/pcos_cleaned.csv")
 
-
 # Run preprocessing
 (
     X_train,
@@ -30,40 +27,21 @@ df = pd.read_csv("data/processed/pcos_cleaned.csv")
 ) = preprocess_data(df)
 
 
-
-# Test 1: Check train-test split worked
-
-
-assert len(X_train) > 0
-assert len(X_test) > 0
-
-print("Train-test split test passed.")
+def test_train_test_split_worked():
+    assert len(X_train) > 0
+    assert len(X_test) > 0
 
 
-
-# Test 2: Check missing values removed
-
-
-assert X_train.isnull().sum().sum() == 0
-assert X_test.isnull().sum().sum() == 0
-
-print("Missing value handling test passed.")
+def test_missing_values_removed():
+    assert X_train.isnull().sum().sum() == 0
+    assert X_test.isnull().sum().sum() == 0
 
 
-# Test 3: Check scaling completed
+def test_feature_scaling_completed():
+    assert X_train_scaled.shape[0] == X_train.shape[0]
+    assert X_test_scaled.shape[0] == X_test.shape[0]
 
 
-assert X_train_scaled.shape[0] == X_train.shape[0]
-assert X_test_scaled.shape[0] == X_test.shape[0]
-
-print("Feature scaling test passed.")
-
-
-
-# Test 4: Check target variable exists
-
-
-assert y_train is not None
-assert y_test is not None
-
-print("Target variable test passed.")
+def test_target_variables_exist():
+    assert y_train is not None
+    assert y_test is not None
