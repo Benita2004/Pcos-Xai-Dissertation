@@ -303,7 +303,18 @@ h1, h2, h3, h4 {
     margin: 0;
     font-weight: 500;
 }
+.prediction-result-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
 
+.prediction-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
 /* =========================
    SHAP Section
 ========================= */
