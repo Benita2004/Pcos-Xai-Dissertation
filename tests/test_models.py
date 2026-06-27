@@ -43,9 +43,6 @@ def test_predictions_generated():
     assert len(predictions) > 0
 
 
-def test_random_forest_predictions_match_test_size():
-    assert len(predictions["Random Forest"]) == len(y_test)
-
-
-def test_logistic_regression_predictions_match_test_size():
-    assert len(predictions["Logistic Regression"]) == len(y_test)
+def test_all_model_predictions_match_test_size():
+    for model_name, model_predictions in predictions.items():
+        assert len(model_predictions) == len(y_test), f"{model_name} predictions do not match test size"
