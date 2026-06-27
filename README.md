@@ -160,7 +160,7 @@ The system is intended for educational and research purposes only and should not
 ---
 
 ## Current Status
-Project currently in development.
+Project Finalised
 
 Planned stages include:
 - Data preprocessing and exploratory analysis
