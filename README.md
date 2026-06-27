@@ -44,38 +44,62 @@ To develop and evaluate an explainable machine learning system capable of predic
 ```text
 pcos-xai-dissertation/
 │
+├── dashboard/
+│   ├── assets/
+│   │   ├── images/
+│   │   │   ├── Benita.png
+│   │   │   ├── Butterfly.png
+│   │   │   └── Uterus.png
+│   │   └── styles.css
+│   │
+│   ├── components/
+│   │   ├── disclaimer.py
+│   │   ├── header.py
+│   │   ├── model_info_card.py
+│   │   ├── prediction_card.py
+│   │   ├── probability_card.py
+│   │   ├── shap_section.py
+│   │   └── sidebar.py
+│   │
+│   ├── utils/
+│   │   ├── image_helper.py
+│   │   ├── input_processor.py
+│   │   ├── model_loader.py
+│   │   └── predictor.py
+│   │
+│   └── app.py
+│
 ├── data/
 │   ├── raw/
+│   │   └── PCOS_data.csv
 │   └── processed/
+│
+├── models/
+│   ├── random_forest_model.pkl
+│   └── scaler.pkl
 │
 ├── notebooks/
 │   ├── 01_data_exploration.ipynb
 │   ├── 02_preprocessing.ipynb
 │   ├── 03_model_training.ipynb
-│   └── 04_xai_analysis.ipynb
+│   ├── 04_model_evaluation.ipynb
+│   └── 05_xai_analysis.ipynb
 │
 ├── src/
+│   ├── __init__.py
 │   ├── data_preprocessing.py
-│   ├── train_models.py
 │   ├── evaluate_models.py
 │   ├── explainability.py
-│   └── utils.py
-│
-├── dashboard/
-│   └── app.py
-│
-├── outputs/
-│   ├── figures/
-│   ├── metrics/
-│   └── shap_lime/
-│
-├── models/
+│   └── train_models.py
 │
 ├── tests/
+│   ├── test_dashboard.py
+│   ├── test_models.py
+│   └── test_preprocessing.py
 │
-├── requirements.txt
+├── .gitignore
 ├── README.md
-└── .gitignore
+└── requirements.txt
 ```
 
 ---
@@ -136,7 +160,7 @@ The system is intended for educational and research purposes only and should not
 ---
 
 ## Current Status
-Project currently in development.
+Project Finalised
 
 Planned stages include:
 - Data preprocessing and exploratory analysis
