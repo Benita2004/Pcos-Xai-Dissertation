@@ -141,7 +141,6 @@ The Streamlit dashboard will include:
 - Real-time PCOS prediction
 - Prediction confidence score
 - SHAP explanation visualisations
-- LIME local prediction explanations
 - Model performance metrics
 - Interactive visual analytics
 
