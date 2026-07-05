@@ -16,7 +16,7 @@ def render_model_info_card():
 
         '<p><strong>Purpose:</strong> PCOS risk prediction</p>'
 
-        '<p><strong>Explainability method:</strong> SHAP and LIME</p>'
+        '<p><strong>Explainability method:</strong> SHAP</p>'
 
         '<p><strong>Input type:</strong> Clinical and lifestyle features</p>'
 
